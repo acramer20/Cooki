@@ -1,0 +1,128 @@
+{%extends 'header.html'%}
+
+{%block content%}
+	
+	<!--main-->
+	<main class="main" role="main">
+		<!--wrap-->
+		<div class="wrap clearfix">
+			<!--breadcrumbs-->
+			<nav class="breadcrumbs">
+				<ul>
+					<li><a href="/" title="Home">Home</a></li>
+					<li>Search for Recipes</li>
+				</ul>
+			</nav>
+			<!--//breadcrumbs-->
+			
+			<!--row-->
+			<div class="row">
+				<header class="s-title">
+					<h1>Search for Recipes</h1>
+				</header>
+				
+				<!--content-->
+				<section class="content full-width">
+					<!--recipefinder-->
+					<form action="/search" class="recipe_search" method="POST">
+					<div class="container recipefinder">
+					
+						<div class="left">
+							<h3>Limit your Macros</h3>
+							<p>Choose the max amount of grams per macro ingredient for your meal.</p>
+							<label for="max-protein">Max Protein</label><input type="number" class="form-control" name="max-protein" id="max-protein"><label for="max-carbs">Max Carbs</label><input type="number" class="form-control" name="max-carbs" id="max-carbs"><label for="max-fat">Max Fats</label><input type="number" class="form-control" name="max-fat" id="max-fat">
+						</div>
+						<div class="right">
+							<div class="ingredients">
+								<h3>Search by cuisine and intolerance</h3>
+								<div class="f-row">
+            					<select class="form-control" name="cuisine" id="cuisine">
+								<option>Cuisine</option>
+                				{% for cuis in cuisines %}
+                				<option value="{{cuis}}">{{cuis}}</option>
+                				{% endfor %}
+            					</select>
+								<!-- <input type="text" placeholder="Add ingredients (one at a time)" /> -->
+								<!-- <button class="add">+</button> -->
+							</div>
+							<div class="f-row">
+								<select class="form-control" name="intolerance" id="intolerance">
+									<option>Intolerance</option>
+									{% for intol in intolerances %}
+									<option value="{{intol}}">{{intol}}</option>
+									{% endfor %}
+									</select>
+								<!-- <input type="text" value="garlic" /> -->
+								<!-- <button class="remove">+</button> -->
+							</div>
+							<div class="f-row">
+								<input type="submit" value="Search" />
+							</div>
+								
+								
+							</div>
+							
+							<h3>Or you might want to search directly</h3>
+							<div class="row">
+								<div class="search one-half">
+									<input name="search" type="search" placeholder="Find recipe by name" />
+									<input type="submit" value="Search" />
+								</div>
+								
+								<div class="one-half">
+									<select>
+										<option>or select a diet</option>
+										{%for diet in diets%}
+										<option values="{{diet}}">{{diet}}</option>
+										{%endfor%}
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					</form>
+					<!--//recipefinder-->
+				
+					<!--results-->
+					<div class="entries row recipe-results">
+						<!--item-->
+						{%for result in resp.results%}
+						<div class="entry one-fourth">
+							<figure>
+								<img src="{{result.image}}" alt="" />
+								<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+							</figure>
+							<div class="container">
+								<h2><a href="recipe.html">{{result.title}}</a></h2> 
+								<div class="actions">
+									<div>
+										<div class="likes"><i class="fa fa-heart-o like " data-id="{{result.id}}" data-title="{{result.title}}" data-img="{{result.image}}"></i></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{%endfor%}
+						
+						
+						<!--item
+						
+						<!--item-->
+						
+						 
+						
+						<div class="quicklinks">
+							<a href="#" class="button">More recipes</a>
+							<a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+						</div>
+					</div>
+					<!--//results-->
+				</section>
+				<!--//content-->
+			</div>
+			<!--//row-->
+		</div>
+		<!--//wrap-->
+	</main>
+	<!--//main-->
+
+	{%endblock%}

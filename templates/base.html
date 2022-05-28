@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cooky</title>
+
+  <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+  
+
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
+  <!-- <link rel="shortcut icon" href="/static/favicon.ico"> -->
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+<nav class="navbar navbar-expand">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">
+        <img src="https://i.pinimg.com/originals/7e/e2/10/7ee2100cc6d8005af782d48081dab899.jpg" alt="logo">
+        <span>Cooky</span>
+      </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      {% if request.endpoint != None %}
+      <li>
+        <form class="navbar-form navbar-right" action="">
+            <label for="max-protein">Max Protein</label>
+            <input type="number" class="form-control" name="max-protein" id="max-protein">
+            <label for="max-carbs">Max Carbs</label>
+            <input type="number" class="form-control" name="max-carbs" id="max-carbs">
+            <label for="max-fat">Max Fats</label>
+            <input type="number" class="form-control" name="max-fat" id="max-fat">
+            <label for="cuisines"> Diet:</label>
+            <select class="form-control" name="cuisine" id="cuisine">
+                {% for cuis in cuisines %}
+                <option value="{{cuis}}">{{cuis}}</option>
+                {% endfor %}
+            </select>
+            <label for="diet"> Cuisine:</label>
+            <select name="diet" id="diet" class="form-control">
+                {% for diet in diets %}
+                <option value="{{diet}}">{{diet}}</option>
+                {% endfor %}
+            </select>
+            <label for="intolerance"> Intolerance:</label>
+            <select name="intolerance" id="intolerance" class="form-control">
+                {% for intol in intolerances %}
+                <option value="{{intol}}">{{intol}}</option>
+                {% endfor %}
+            </select>
+          <input name="query" class="form-control" placeholder="Search Cooky" id="search">
+          <button class="btn btn-default">
+            <span class="fa fa-search"></span>
+          </button>
+        </form>
+      </li>
+      {% endif %}
+      {% if not g.user %}
+      <li><a href="/signup">Sign up</a></li>
+      <li><a href="/login">Log in</a></li>
+      {% else %}
+      <li>
+        <a href="/user/{{ g.user.id }}">
+          <img src="{{ g.user.profile_pic }}" alt="{{ g.user.username }}">
+        </a>
+      </li>
+      <li><a href="/logout">Log out</a></li>
+      <li><a href="/">Home</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  {% for category, message in get_flashed_messages(with_categories=True) %}
+  <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %}
+
+  {% block content %}
+  <aside>
+    <div class="card user-card">
+        <a href="/user/{{g.user.id}}" class="card-link">
+            <img src="{{g.user.profile_pic}}"
+            alt="Image for {{ g.user.username }}"
+            class="card-image">
+            <p>@{{ g.user.username }}</p>
+        </a>
+        <ul class="user-stats nav nav-pills">
+            <li class="stat">
+                <div id="favs">
+                <h4>Favorited Recipes</h4>
+                <ul>
+                {%for favorite in favorites%}
+                <li><h5><a href="/api/recipe/{{favorite.id}}">{{favorite.title}}</a></h5><div><img src="{{favorite.recipe_img}}"></div></li>
+                {%endfor%}
+                </ul>
+                </div>
+                <h4>
+                    <a href="/user/{{ g.user.id }}">see line 21 of home.html on warbler</a>
+                </h4>
+            </li>
+
+        </ul>
+    </div>
+</aside>
+<div id="recipe-results">
+
+</div>
+  {% endblock %}
+
+
+
+</div>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

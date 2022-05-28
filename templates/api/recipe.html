@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{%block content%}
+<div id="container">
+    <div class="recipe_container">
+        <h1>{{recipe.title}}</h1>
+        <div class="img-container">
+            <img src="{{recipe.image}}">
+        </div>
+        <div class="rec-info">
+            <h4>Recipe:</h4>
+            <ul>
+                {%for ingredient in recipe.extendedIngredients%}
+                <li>{{ingredient.original}}</li>
+                {%endfor%}
+            </ul>
+            <h4>Instructions:</h4>
+            <p>{{recipe.instructions}}</p>
+        </div>
+        <div class="nutrition-info">
+            <h4>Nutritional Values</h4>
+            {%for nutrient in recipe.nutrition.nutrients%}
+            <p>Total {{nutrient.name}} Per Serving: {{nutrient.amount}} {{nutrient.unit}}</p>
+            {%endfor%}
+            
+        </div>
+    </div>
+</div>
+{%endblock%}

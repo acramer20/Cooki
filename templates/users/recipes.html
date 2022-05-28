@@ -1,0 +1,79 @@
+{%extends 'header.html'%}
+
+{%block content%}
+	
+	<!--main-->
+	<main class="main" role="main">
+		<!--wrap-->
+		<div class="wrap clearfix">
+			<!--breadcrumbs-->
+			<nav class="breadcrumbs">
+				<ul>
+					<li><a href="/" title="Home">Home</a></li>
+					<li>Recipes</li>
+				</ul>
+			</nav>
+			<!--//breadcrumbs-->
+			
+			<!--row-->
+			<div class="row">
+				<header class="s-title">
+					<h1>Recipes</h1>
+				</header>
+				
+				<!--content-->
+				<section class="content three-fourth">
+					<!--entries-->
+					<div class="entries row">
+						<!--item-->
+						{%for random in randoms.recipes%}
+						<div class="entry one-third">
+							<figure>
+								<img src="{{random.image}}" alt="" />
+								<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+							</figure>
+							<div class="container">
+								<h2><a href="recipe.html">{{random.title}}</a></h2> 
+								<div class="actions">
+									<div>
+										<div class="likes"><i class="fa fa-heart-o like " data-id="{{random.id}}" data-title="{{random.title}}" data-img="{{random.image}}"></i></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{%endfor%}
+						<!--item-->
+
+						<div class="quicklinks">
+							<a href="/recipes" class="button">More recipes</a>
+							<a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
+						</div>
+					</div>
+					<!--//entries-->
+				</section>
+				<!--//content-->
+				
+				<!--right sidebar-->
+				<aside class="sidebar one-fourth">
+					<div class="widget">
+						<h3>Advertisment</h3>
+						<a href="#"><img src="https://i.pinimg.com/originals/5e/1f/19/5e1f1966e8d87e1a73e9d1c9a7c475d9.jpg" alt="" /></a>
+					</div>
+					<div class="widget">
+						<h3>Advertisment</h3>
+						<a href="#"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/aacbd811443579.560f7c471e4c4.jpg" alt="" /></a>
+					</div>
+					<div class="widget">
+						<h3>Advertisment</h3>
+						<a href="#"><img src="/static/images/advertisment.jpg" alt="" /></a>
+					</div>
+				</aside>
+				<!--//right sidebar-->
+			</div>
+			<!--//row-->
+		</div>
+		<!--//wrap-->
+	</main>
+	<!--//main-->
+
+	{%endblock%}

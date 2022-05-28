@@ -1,0 +1,43 @@
+{%extends 'header.html'%}
+
+{%block content%}
+		
+	<!--main-->
+	<main class="main" role="main">
+		<!--wrap-->
+		<div class="wrap clearfix">
+			<!--row-->
+			<div class="row">
+			<!--content-->
+				<section class="content center full-width">
+					<div class="modal container">
+						<h3>Edit Profile</h3>
+						<form method="POST" id="user_form">
+						{{ form.hidden_tag() }}
+
+      					{% for field in form if field.widget.input_type != 'hidden' %}
+        				{% for error in field.errors %}
+						
+          				<span class="text-danger">{{ error }}</span>
+        				{% endfor %}
+						<div class="f-row">
+        				{{ field(placeholder=field.label.text, class="form-control") }}
+						</div>
+      					{% endfor %}
+						<div class="f-row bwrap">
+							<input type="submit" value="Save and cont." />
+						</div>
+						</form>
+						<p>Change your mind? <a href="/my_profile/{{user_id}}">Return home.</a></p>
+					</div>
+				</section>
+				<!--//content-->
+			</div>
+			<!--//row-->
+		</div>
+		<!--//wrap-->
+	</main>
+	<!--//main-->
+	
+	
+	{%endblock%}
