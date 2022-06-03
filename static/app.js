@@ -60,8 +60,12 @@ async function gatherDelData(evt) {
         console.log(id)
         let resp = await axios.post("/api/recipe/remove", {
         id
-        })
+        }) 
         console.log(resp)
+        if (resp.data == 'success'){
+            document.getElementById(`a-favorite-item-${id}`).remove()
+            // window.location.reload()
+        }
     }
     }
  
@@ -101,8 +105,11 @@ async function gatherDelData(evt) {
 
 // $(".cuisine-form").on("submit", processForm);
 // $(".search-form").on("submit", processForm);
-$(".recipe-results").click(gatherFavData)
-$(".actions").click(gatherDelData)
+$(".likes-find").click(gatherFavData)
+$(".likes-random").click(gatherFavData)
+$(".likes-popular").click(gatherFavData)
+$(".likes-recipe").click(gatherFavData)
+$(".likes-trash").click(gatherDelData)
 // document.getElementById('#recipe-results').addEventListener("click", gatherFavData);
 
 

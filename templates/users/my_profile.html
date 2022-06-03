@@ -34,9 +34,7 @@
 						<nav class="tabs">
 							<ul>
 								<li class="active"><a href="#about" title="About me">About me</a></li>
-								<li><a href="#recipes" title="My recipes">My recipes</a></li>
 								<li><a href="#favorites" title="My favorites">My favorites</a></li>
-								<li><a href="#posts" title="My posts">My posts</a></li>
 							</ul>
 						</nav>
 						
@@ -146,16 +144,16 @@
 							<div class="entries row">
 								<!--item-->
 								{%for favorite in favorites%}
-								<div class="entry one-third">
+								<div class="entry one-third" id="a-favorite-item-{{favorite.id}}">
 									<figure>
 										<img src="{{favorite.recipe_img}}" alt="" />
-										<figcaption><a href="/api/recipe/{{favorite.id}}"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+										<figcaption><a href="/recipe/{{favorite.id}}"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
 									</figure>
 									<div class="container">
-										<h2><a href="/api/recipe/{{favorite.id}}">{{favorite.title}}</a></h2> 
+										<h2><a href="/recipe/{{favorite.id}}">{{favorite.title}}</a></h2> 
 										<div class="actions">
 											<div>
-												<div class="likes" data-id="{{favorite.id}}" data-title="{{favorite.title}}" data-img="{{favorite.recipe_img}}"><i class="fa fa-trash like" data-id="{{favorite.id}}" data-title="{{favorite.title}}" data-img="{{favorite.recipe_img}}"></i></div>
+												<div class="likes-trash" data-id="{{favorite.id}}" data-title="{{favorite.title}}" data-img="{{favorite.recipe_img}}"><i class="fa fa-trash like" data-id="{{favorite.id}}" data-title="{{favorite.title}}" data-img="{{favorite.recipe_img}}"></i></div>
 											</div>
 										</div>
 									</div>

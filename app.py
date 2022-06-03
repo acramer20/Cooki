@@ -20,7 +20,8 @@ db.create_all()
 
 app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
 
-API_KEY = "19269c3c0c1e463da6cd2157f3303d8b"
+# API_KEY = "19269c3c0c1e463da6cd2157f3303d8b"
+API_KEY = "1e856b6073e54d8a8c0c7234a720cd5a"
 
 ############################# User signup/login/logout ######################################################
 @app.before_request
@@ -150,7 +151,7 @@ def homepage():
         query = request.form.get('home-search')
         
 
-        recipe_results = requests.get(f'https://api.spoonacular.com/recipes/complexSearch?query={query}&cuisine={cuisine}&apiKey={API_KEY}')
+        recipe_results = requests.get(f'https://api.spoonacular.com/recipes/complexSearch?query={query}&cuisine={cuisine}&number=28&apiKey={API_KEY}')
         resp=recipe_results.json()
         # return render_template('users/find_recipe.html', intolerances=intolerances, cuisines=cuisines, diets=diets, resp=recipe_results.json())
     
@@ -161,7 +162,7 @@ def homepage():
 @app.route('/search', methods=['GET', 'POST'])
 def search_recipes():
     """Users and non-users can search the site for recipes using the info gathered from the API."""
-    intolerances = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"]
+    intolerances = ["Gluten Free","Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"]
     cuisines = ["African",
                 "American",
                 "British",
@@ -192,16 +193,18 @@ def search_recipes():
     # favorites = (Recipe.query.limit(100).all())
 
     if request.method == 'POST':
-        cuisine = request.form.get('cuisine')
-        max_protein = request.form.get('max-protein')
-        max_carbs = request.form.get('max-carbs')
-        max_fat = request.form.get('max-fat')
-        diet = request.form.get('diet')
-        intolerance = request.form.get('intolerance')
-        query = request.form.get('search')
+        cuisine = request.form.get('cuisine', '""') 
+        max_protein = request.form.get('max-protein', 1000) or 1000
+        max_carbs = request.form.get('max-carbs', 1000) or 1000
+        max_fat = request.form.get('max-fat', 1000) or 1000
+        diet = request.form.get('diet', '""')
+        intolerance = request.form.get('intolerance', '""')
+        query = request.form.get('search', '""')
         
-
-        recipe_results = requests.get(f'https://api.spoonacular.com/recipes/complexSearch?query={query}&maxProtein={max_protein}&maxCarbs={max_carbs}&maxFat={max_fat}&cuisine={cuisine}&diet={diet}&intolerance={intolerance}&apiKey={API_KEY}')
+        
+        print(f'https://api.spoonacular.com/recipes/complexSearch?query={query}&maxProtein={max_protein}&maxCarbs={max_carbs}&maxFat={max_fat}&cuisine={cuisine}&diet={diet}&intolerance={intolerance}&number=28&apiKey={API_KEY}')
+        recipe_results = requests.get(f'https://api.spoonacular.com/recipes/complexSearch?query={query}&maxProtein={max_protein}&maxCarbs={max_carbs}&maxFat={max_fat}&cuisine={cuisine}&diet={diet}&intolerance={intolerance}&number=28&apiKey={API_KEY}')
+        print(recipe_results)
         resp=recipe_results.json()
         # return render_template('users/find_recipe.html', intolerances=intolerances, cuisines=cuisines, diets=diets, resp=recipe_results.json())
     
@@ -357,8 +360,8 @@ def delete():
 
     
 
-    recipe_response = requests.get(f"https://api.spoonacular.com/recipes/{id}/information?includeNutrition=true&apiKey={API_KEY}")
-    return recipe_response.json()
+   
+    return 'success'
     
 
 

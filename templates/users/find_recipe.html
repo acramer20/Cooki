@@ -84,19 +84,20 @@
 					<!--//recipefinder-->
 				
 					<!--results-->
-					<div class="entries row recipe-results">
+					<div>
+					<div class="entries row">
 						<!--item-->
 						{%for result in resp.results%}
 						<div class="entry one-fourth">
 							<figure>
 								<img src="{{result.image}}" alt="" />
-								<figcaption><a href="recipe.html"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
+								<figcaption><a href="/recipe/{{result.id}}"><i class="icon icon-themeenergy_eye2"></i> <span>View recipe</span></a></figcaption>
 							</figure>
 							<div class="container">
-								<h2><a href="recipe.html">{{result.title}}</a></h2> 
+								<h2><a href="/recipe/{{result.id}}">{{result.title}}</a></h2> 
 								<div class="actions">
 									<div>
-										<div class="likes"><i class="fa fa-heart-o like " data-id="{{result.id}}" data-title="{{result.title}}" data-img="{{result.image}}"></i></div>
+										<div class="likes-find"><i class="fa fa-heart-o like " data-id="{{result.id}}" data-title="{{result.title}}" data-img="{{result.image}}"></i></div>
 									</div>
 								</div>
 							</div>
@@ -111,9 +112,10 @@
 						 
 						
 						<div class="quicklinks">
-							<a href="#" class="button">More recipes</a>
+							<a href="/recipes" class="button">More recipes</a>
 							<a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
 						</div>
+					</div>
 					</div>
 					<!--//results-->
 				</section>
