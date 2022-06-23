@@ -952,3 +952,8 @@ h2.large 		{background-size:100% 123px;font-size:24px;}
 .orange-bg {
   background-color: orange!important;
 }
+
+.custom-flexbox {
+  display: flex!important;
+  flex-wrap: wrap!important;
+}
