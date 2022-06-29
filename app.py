@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, flash, redirect, session, g, 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 import requests
+import os
 
 from forms import LoginForm, UserAddForm, UserEditForm
 from models import db, connect_db, User, Recipe
@@ -18,7 +19,7 @@ connect_db(app)
 # db.drop_all()
 db.create_all()
 
-app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "HelloSecret1")
 
 # API_KEY = "19269c3c0c1e463da6cd2157f3303d8b"
 API_KEY = "1e856b6073e54d8a8c0c7234a720cd5a"
