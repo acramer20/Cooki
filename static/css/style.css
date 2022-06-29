@@ -158,7 +158,7 @@ tr:nth-child(2n+1) td{background:#f6f6f6;}
 .user-nav .light a 	{background:#FF8E88;}
 .user-nav .medium a 	{background:#FF7B74;}
 .user-nav .dark a 	{background:#F4716A;}
-.user-nav li span 				{float:left;width:100%;padding:10px 10px 0;}
+.user-nav li span 				{float:left;width:100%;padding:5px 5px 0;}
 .user-nav li:hover a,
 .user-nav .current-menu-item a 			{background:#fff;}
 .user-nav .light.current-menu-item a,
