@@ -226,7 +226,7 @@ def edit_profile():
 
         flash("Wrong password, please try again.", 'danger')
 
-    return render_template('users/edit1.html', form=form, user_id=user.id)
+    return render_template('users/edit.html', form=form, user_id=user.id)
 
 ################################################### API ROUTES ###########################################################
 
