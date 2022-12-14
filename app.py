@@ -21,8 +21,14 @@ connect_db(app)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "HelloSecret1")
 
-# API_KEY = "19269c3c0c1e463da6cd2157f3303d8b"
-API_KEY = "1e856b6073e54d8a8c0c7234a720cd5a"
+
+API_KEY = "19269c3c0c1e463da6cd2157f3303d8b"
+
+intolerances = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"]
+cuisines = ["African","American","British","Cajun","Caribbean","Chinese","Eastern European","European","French","German","Greek","Indian","Irish","Italian","Japanese","Jewish","Latin American","Mediterranean","Mexican","Middle Eastern","Nordic","Southern","Spanish","Thai","Vietnamese"]
+diets = ["Ketogenic", "Vegetarian", "Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescatarian","Paleo","Primal","Low FODMAP", "Whole30"]
+    
+
 
 ############################# User signup/login/logout ######################################################
 @app.before_request
@@ -116,33 +122,6 @@ def homepage():
     populars = requests.get(f"https://api.spoonacular.com/recipes/random?number=6&apiKey={API_KEY}")
 
     favorites = (Recipe.query.limit(100).all())
-    intolerances = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"]
-    cuisines = ["African",
-                "American",
-                "British",
-                "Cajun",
-                "Caribbean",
-                "Chinese",
-                "Eastern European",
-                "European",
-                "French",
-                "German",
-                "Greek",
-                "Indian",
-                "Irish",
-                "Italian",
-                "Japanese",
-                "Jewish",
-                "Latin American",
-                "Mediterranean",
-                "Mexican",
-                "Middle Eastern",
-                "Nordic",
-                "Southern",
-                "Spanish",
-                "Thai",
-                "Vietnamese"]
-    diets = ["Ketogenic", "Vegetarian", "Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescatarian","Paleo","Primal","Low FODMAP", "Whole30"]
     
     
     resp = []
@@ -163,33 +142,6 @@ def homepage():
 @app.route('/search', methods=['GET', 'POST'])
 def search_recipes():
     """Users and non-users can search the site for recipes using the info gathered from the API."""
-    intolerances = ["Gluten Free","Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"]
-    cuisines = ["African",
-                "American",
-                "British",
-                "Cajun",
-                "Caribbean",
-                "Chinese",
-                "Eastern European",
-                "European",
-                "French",
-                "German",
-                "Greek",
-                "Indian",
-                "Irish",
-                "Italian",
-                "Japanese",
-                "Jewish",
-                "Latin American",
-                "Mediterranean",
-                "Mexican",
-                "Middle Eastern",
-                "Nordic",
-                "Southern",
-                "Spanish",
-                "Thai",
-                "Vietnamese"]
-    diets = ["Ketogenic", "Vegetarian", "Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescatarian","Paleo","Primal","Low FODMAP", "Whole30"]
     resp = []
     # favorites = (Recipe.query.limit(100).all())
 
