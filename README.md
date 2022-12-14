@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
- 
->>>>>>> refs/remotes/origin/main
+
 <h1>Cooki</h1> 
 <p>GitHub link: https://acramer20.github.io/Cooki/</p>
 
@@ -38,8 +35,4 @@ Can delete favorites if no longer desire them to be apart of your favs.</p>
 <li>CSS</li>
 </ul>
 
-<<<<<<< HEAD
 <h3>ENJOY!</h3>
-=======
-<h3>ENJOY!</h3>
->>>>>>> refs/remotes/origin/main
