@@ -60,20 +60,20 @@ class UserModelTestCase(TestCase):
         db.session.rollback()
         return res
 
-    def test_user_model(self):
-        """Does basic model work?"""
+    # def test_user_model(self):
+    #     """Does basic model work?"""
 
-        u = User(
-            email="test@test.com",
-            username="testuser",
-            password="HASHED_PASSWORD"
-        )
+    #     u = User(
+    #         email="test@test.com",
+    #         username="testuser",
+    #         password="HASHED_PASSWORD"
+    #     )
 
-        db.session.add(u)
-        db.session.commit()
+    #     db.session.add(u)
+    #     db.session.commit()
 
-        # User should have no recipes
-        self.assertEqual(len(u.recipes), 0)
+    #     # User should have no recipes
+    #     self.assertEqual(len(u.recipes), 0)
 
     # ***************** Signup Tests ********************
 
