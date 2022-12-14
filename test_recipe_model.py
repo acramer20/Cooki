@@ -52,20 +52,20 @@ class UserModelTestCase(TestCase):
         return res
 
 
-    # def test_recipe_model(self):
-    #     """Does basic model work?"""
+    def test_recipe_model(self):
+        """Does basic model work?"""
 
-    #     r = Recipe(
-    #         title="TestText",
-    #         user_id= self.uid,
-    #         recipe_img = "https://www.allrecipes.com/thmb/bhh-UuQOUCuyVJ-9PodUPWSbnBk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/23600-worlds-best-lasagna-armag-1x1-1-339b21b9f88b48c9943def663f43889c.jpg"
-    #     )
+        r = Recipe(
+            title="TestText",
+            user_id= self.uid,
+            recipe_img = "https://www.allrecipes.com/thmb/bhh-UuQOUCuyVJ-9PodUPWSbnBk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/23600-worlds-best-lasagna-armag-1x1-1-339b21b9f88b48c9943def663f43889c.jpg"
+        )
 
-    #     db.session.add(r)
-    #     db.session.commit()
+        db.session.add(r)
+        db.session.commit()
 
-    #     # User should have 1 message
-    #     self.assertEqual(len(Recipe.query.all()), 1)
+        # User should have 1 message
+        self.assertEqual(len(Recipe.query.all()), 1)
 
     def test_recipe_model_no_recipe_image(self):
         """Does basic model work?"""
@@ -80,6 +80,6 @@ class UserModelTestCase(TestCase):
             db.session.add(r)
             db.session.commit()
 
-        # User should have 1 
-        # recipe
-        self.assertEqual(len(Recipe.query.all()), 0)
+        # # User should have 1 
+        # # recipe
+        # self.assertEqual(len(Recipe.query.all()), 1)
